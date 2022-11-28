@@ -82,7 +82,7 @@ class FlightSchedule(models.Model):
     )
 
     def __str__(self):
-        return str(self.id) + ' - ' + str(self.airport_origin) + ' (' + str(
+        return str(self.id) + ' - ' + str(self.airplane) + ' / '  + str(self.airport_origin) + ' (' + str(
             self.departure_time.date()) + ') / ' + str(self.airport_destination) + ' (' + str(
             self.arrival_time.date()) + ')'
 
