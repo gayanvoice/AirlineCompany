@@ -1,13 +1,20 @@
 {% extends "admin/base_site.html" %}
 {% load i18n %}
 
-{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'admin:index' %}">{% translate 'Home' %}</a></div>{% endblock %}
+
+ {% block breadcrumbs %}
+        <nav aria-label="breadcrumb" style="border-bottom: 1px solid #dfdfdf;">
+            <ol class="breadcrumb m-3">
+                <li class="breadcrumb-item active"><a href="{% url 'admin:index' %}">{% translate 'Home' %}</a></li>
+            </ol>
+        </nav>
+    {% endblock %}
 
 {% block nav-sidebar %}{% endblock %}
 
 {% block content %}
 
-<p>{% translate "Thanks for spending some quality time with the Wale Airline Company today." %}</p>
+<p>{% translate "Thanks for spending some quality time with the Dolapo Airline Company today." %}</p>
 
 <p><a href="{% url 'admin:index' %}">{% translate 'Log in again' %}</a></p>
 

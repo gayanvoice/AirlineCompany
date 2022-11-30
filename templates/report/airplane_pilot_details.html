@@ -13,10 +13,15 @@
 {% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
 
 {% if not is_popup %}
-{% block breadcrumbs %}
-<div class="breadcrumbs">
-<a href="{% url 'admin:index' %}">{% translate 'Home' %}</a> &rsaquo; <span> Report </span> &rsaquo; <span> Machine details and list of pilots eligible to fly it </span></div>
-{% endblock %}
+    {% block breadcrumbs %}
+        <nav aria-label="breadcrumb" style="border-bottom: 1px solid #dfdfdf;">
+            <ol class="breadcrumb m-3">
+                <li class="breadcrumb-item"><a href="{% url 'admin:index' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active">Report</li>
+                 <li class="breadcrumb-item active">Machine details and list of pilots eligible to fly it</li>
+            </ol>
+        </nav>
+    {% endblock %}
 {% endif %}
 {% if user.is_authenticated %}
     {% block content %}
@@ -24,9 +29,13 @@
         <table>
         <thead>
         <tr>
-            <th scope="col">Airplane</th>
-            <th scope="col">Employee</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Job</th>
             <th scope="col">Pilot Rating</th>
+            <th scope="col">Airplane</th>
+            <th scope="col">Code</th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +44,10 @@
             <th scope="row">{{ obj.0 }}</th>
             <td>{{ obj.1 }}</td>
             <td>{{ obj.2 }}</td>
+            <td>{{ obj.3 }}</td>
+            <td>{{ obj.4 }}</td>
+            <td>{{ obj.5 }}</td>
+            <td>{{ obj.6 }}</td>
         </tr>
         {% endfor %}
         </tbody>

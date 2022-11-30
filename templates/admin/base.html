@@ -4,8 +4,8 @@
 <head>
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
-
-    <link href="https://getbootstrap.com/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     {% block dark-mode-vars %}
         <link rel="stylesheet" href="{% static "admin/css/light_mode.css" %}">
     {% endblock %}
@@ -37,49 +37,37 @@
     {% if not is_popup %}
         <!-- Header -->
         {% block header %}
-            <header class="navbar flex-md-nowrap p-0 border-bottom bg-light">
-                <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="/admin">Wale Airline Company</a>
-                {% block usertools %}
-                    {% if has_permission %}
-                        <div class="navbar-nav">
-                            <div class="nav-item text-nowrap">
-                                <div class="nav me-auto">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary text-bg-primary">
+                <div class="container-fluid">
+                    <a class="text-bg-primary" href="#">Dolapo Airline Company</a>
+                    {% block usertools %}
+                        {% if has_permission %}
+                            <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <div class="nav-item m-1 ">
                                     {% block welcome-msg %}
-                                        <div class="nav-item">
-                                            <span class="nav-link link-dark px-2">
-                                                {% firstof user.get_short_name user.get_username %}
-                                            </span>
-                                        </div>
+                                        <small class="text-bg-primary ms-2">Username {% firstof user.get_short_name user.get_username %}</small>
                                     {% endblock %}
-                                    <div class="nav-item my-2">
-                                        {% block userlinks %}
-                                            <form id="logout-form" method="post" class="nav-link link-dark"
-                                                  action="{% url 'admin:logout' %}">
-                                                {% csrf_token %}
-                                                <button type="submit"
-                                                        class="link-dark">{% translate 'Sign out' %}</button>
-                                            </form>
-                                        {% endblock %}
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>
-                    {% endif %}
-                {% endblock %}
-            </header>
-
-            <header>
-
-                {% block nav-global %}{% endblock %}
-            </header>
+                            <form class="d-flex" action="{% url 'admin:logout' %}">
+                                <button class="btn btn-danger btn-sm" type="submit">Sign Out</button>
+                            </form>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            </nav>
+            {% block nav-global %}{% endblock %}
         {% endblock %}
         <!-- END Header -->
         {% block breadcrumbs %}
-            <div class="breadcrumbs">
-                <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
-                {% if title %} &rsaquo; {{ title }}{% endif %}
-            </div>
+            <nav aria-label="breadcrumb" style="border-bottom: 1px solid #dfdfdf;">
+                <ol class="breadcrumb m-3">
+                    <li class="breadcrumb-item"><a href="{% url 'admin:index' %}">{% translate 'Home' %}</a></li>
+                    {% if title %}
+                        <li class="breadcrumb-item active"><a href="{% url 'admin:index' %}">{{ title }}</a></li>
+                    {% endif %}
+                </ol>
+            </nav>
         {% endblock %}
     {% endif %}
 
@@ -100,9 +88,11 @@
             <!-- Content -->
             <div id="content" class="{% block coltype %}colM{% endblock %}">
                 {% block pretitle %}{% endblock %}
-                <div class = "mb-4">
-                    {% block content_title %}{% if title %}<span class="display-6">{{ title }}</span>{% endif %}{% endblock %}
-                    {% block content_subtitle %}{% if subtitle %}<span class="lead">{{ subtitle }}</span>{% endif %}{% endblock %}
+                <div class="mb-4">
+                    {% block content_title %}{% if title %}
+                        <div class="display-6">{{ title }}</div>{% endif %}{% endblock %}
+{#                    {% block content_subtitle %}{% if subtitle %}#}
+{#                        <div class="lead">{{ subtitle }}</div>{% endif %}{% endblock %}#}
                 </div>
 
                 {% block content %}
@@ -116,7 +106,7 @@
             {% block footer %}
                 <div id="footer">
                     <footer class="py-3">
-                        <p class="text-center text-muted">© 2022 Wale  Airline Company, Inc</p>
+                        <p class="text-center text-muted">© 2022 Dolapo Airline Company</p>
                     </footer>
                 </div>{% endblock %}
         </div>

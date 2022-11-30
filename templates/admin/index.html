@@ -10,32 +10,39 @@
 
 {% block breadcrumbs %}{% endblock %}
 
-{% block nav-sidebar %}{% endblock %}
+{% block content_title %} <span class="display-6">Reports</span> {% endblock %}
 
-{% block sidebar %} {% endblock %}
-
-{% block content %}
-    <div id="content-main">
-        {% include "admin/app_list.html" with app_list=app_list show_changelinks=True %}
-    </div>
-
-    <div id="content-related">
-        <div class="module" id="recent-actions-module">
-            <h2>Reports</h2>
-            <ul class="actionlist">
-                <li><a href="/report/booking_details">Booking details</a></li>
-                <li><a href="/report/airplane_pilot_details">Machine details and list of pilots eligible to fly it</a></li>
-                <li><a href="/report/passenger_bookings">Passengers and their list of bookings</a></li>
-            </ul>
-        </div>
-      <div class="module" id="recent-actions-module">
-            <ul class="actionlist">
-                <li><a href="/report/pilot_schedule_by_month">Pilot Schedule by month</a></li>
-                <li><a href="/report/number_of_passengers_by_flight">Number of passengers by flight</a></li>
-                <li><a href="/report/number_of_working_hours_by_pilot">Number of working hours for all pilots</a></li>
-                <li><a href="/report/destinations_and_bookings">List of the company destinations and their schedule</a></li>
-            </ul>
-        </div>
-    </div>
+ {% block content %}
+ <table class="table">
+            <tbody>
+            <tr>
+                <td><a href="/report/booking_details">Booking details</a></td>
+            </tr>
+            <tr>
+                <td><a href="/report/airplane_pilot_details">Machine details and list of pilots eligible to fly it</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="/report/passenger_bookings">Passengers and their list of bookings</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="/report/pilot_schedule_by_month">Pilot Schedule by month</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="/report/number_of_passengers_by_flight">Number of passengers by flight</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="/report/number_of_working_hours_by_pilot">Number of working hours for all pilots</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="/report/destinations_and_bookings">List of the company destinations and their schedule</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 {% endblock %}
 

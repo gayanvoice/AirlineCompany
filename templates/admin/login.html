@@ -56,7 +56,7 @@
   <div class="form-row">
     {{ form.password.errors }}
     {{ form.password.label_tag }} {{ form.password }}
-    <input type="hidden" name="next" value="{{ next }}">
+    <input type="hidden" name="next" value="{{ next }}" class="form-control">
   </div>
   {% url 'admin_password_reset' as password_reset_url %}
   {% if password_reset_url %}
@@ -65,7 +65,7 @@
   </div>
   {% endif %}
   <div class="submit-row">
-    <input type="submit" value="{% translate 'Log in' %}">
+    <input type="submit" class="btn btn-sm btn-primary btn-block" value="{% translate 'Log in' %}">
   </div>
 </form>
 

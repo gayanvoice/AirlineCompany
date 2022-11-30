@@ -1,9 +1,6 @@
 {% load i18n %}
 {% if app_list %}
     <div class="app-myapp module">
-     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 my-4 mb-4 text-muted text-uppercase">
-          <span>Modules</span>
-        </h6>
         {% for app in app_list %}
             <table>
                 {% for model in app.models %}
@@ -17,21 +14,10 @@
                             <th scope="row">{{ model.name }}</th>
                         {% endif %}
 
-                        {% if model.add_url %}
-                            <td><a href="{{ model.add_url }}">{% translate 'Add' %}</a></td>
-                        {% else %}
-                            <td></td>
-                        {% endif %}
 
-                        {% if model.admin_url and show_changelinks %}
-                            {% if model.view_only %}
-                                <td><a href="{{ model.admin_url }}">{% translate 'View' %}</a></td>
-                            {% else %}
-                                <td><a href="{{ model.admin_url }}">{% translate 'Edit' %}</a></td>
-                            {% endif %}
-                        {% elif show_changelinks %}
+                        <td></td>
                             <td></td>
-                        {% endif %}
+
                     </tr>
                 {% endfor %}
             </table>
