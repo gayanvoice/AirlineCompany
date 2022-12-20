@@ -1,9 +1,8 @@
-select e.full_name,
-       ec.job,
+select ae.full_name,
+       ac.job,
        cast(SEC_TO_TIME(
-       (select TIME_TO_SEC(timediff(fs.arrival_time, fs.departure_time))
-        from app_flightschedule fs where fs.id = es.flight_schedule_id)) as char) time_difference
-from app_employeeschedule es
-left join app_employeecontract ec on ec.id = es.employee_contract_id
-left join app_employee e on e.id = ec.employee_id
-where ec.job in ('PILOT')
+       (select TIME_TO_SEC(timediff(a.arrival, a.departure)) from app_schedule a where a.id =
+             (select an.schedule_id from app_assign an where an.employee_contract_id = 1))) as char) time_difference
+from app_contract ac
+left join app_employee ae on ac.employee_id = ae.id
+where ac.job in ('PILOT')
